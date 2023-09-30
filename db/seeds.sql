@@ -7,12 +7,11 @@ VALUES (1, "Finance"),
 
 INSERT INTO roles (id, title, salary, department_id)
 VALUES (1, "Financial Lead", 300000, 1),
-(2, "Scrum Master", 300000, 1),
-(3, "Senior Engineer", 300000, 1),
-(4, "Senior Sales", 300000, 1),
-(5, "Accountant", 300000, 1),
-(6, "Advertising Lead", 300000, 1),
-(7, "Outreach Specialist", 300000, 1);
+(2, "Senior Engineer", 300000, 1),
+(3, "Senior Sales", 300000, 1),
+(4, "Accountant", 300000, 1),
+(5, "Advertising Lead", 300000, 1),
+(6, "Outreach Specialist", 300000, 1);
 
 
 
