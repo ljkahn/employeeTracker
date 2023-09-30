@@ -1,7 +1,7 @@
 
 const inquirer = require('inquirer');
-const config = require('../config/connection');
-const util = require('util');
+const config = require('../config/connection.js');
+const util = require('util').deprecate;
 const query = util.promisify(config.query).bind(config);
 
 const initQuestion = [
@@ -26,10 +26,10 @@ async function init() {
   const { choice } = await inquirer.prompt(initQuestion);
   console.log(choice);
   switch (choice) {
-    case "View all department.":
+    case "View all departments.":
       viewAlldepartment();
       break;
-    case "View all role.":
+    case "View all roles.":
       viewAllRole();
       break;
     case "View all employees.":
@@ -53,12 +53,6 @@ async function init() {
     default:
   }
   return;
-}
-
-async function viewAlldepartment() {
-  const result = await query("SELECT * FROM department");
-  console.table(result);
-  init();
 }
 
 async function viewAlldepartment() {
@@ -139,23 +133,23 @@ async function addAEmployee() {
     {
       type: "Input",
       name: "first_name",
-      message: "Please tell me the first name!",
+      message: "Please tell me your first name.",
     },
     {
       type: "Input",
       name: "last_name",
-      message: "Please tell me the last name!",
+      message: "Please tell me your last name.",
     },
     {
       type: "list",
       name: "role_id",
-      message: "Please tell me your new role!",
+      message: "Please tell me the new role.",
       choices: role,
     },
     {
       type: "list",
       name: "manager_id",
-      message: "Please tell me your new manager!",
+      message: "Please tell me the new manager.",
       choices: managers,
     },
   ];
