@@ -1,4 +1,4 @@
-module.exports = {
+module.exports= {
     //create a list of options for the menu
     createList: () => {
         const list = [
@@ -43,13 +43,12 @@ module.exports = {
             },
 
         ]
-        return result;
-    }
+        return list;
+    },
 
-},
 
 //create a function to display questions on CLI
-questions: (cb) => {
+ question: (cb) => {
     const choices = cb();
 
     return [
@@ -57,7 +56,10 @@ questions: (cb) => {
             type: ' list',
             name: 'Choice',
             message: 'What would you like to do?',
+            choices: choices
         
         }
     ]
 }
+}
+

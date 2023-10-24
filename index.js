@@ -1,4 +1,4 @@
-const question = require('./questions/questions');
+const question = require('./questions');
 const inquirer = require('inquirer');
 const db = require('./config/connection');
 const util = require('util');
@@ -10,7 +10,7 @@ const query = util.promisify(db.query).bind(db);
 const init = async () => {
   try {
 
-    const answers = await inquirer.prompt(question.askQuestion(question.createList));
+    const answers = await inquirer.prompt(question.question(question.createList));
     const choice = answers.Choice;
 
   
@@ -226,3 +226,5 @@ async function addDepartment() {
 
   viewAllDepartments();
 }
+
+init()
