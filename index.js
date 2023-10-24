@@ -161,3 +161,37 @@ async function viewAllRoles() {
   init();
 }
 
+async function addRole() {
+  // Add query to get department names and their id with an alias of value to work with inquirer
+  const department = await query(`SELECT id AS value, name FROM department`);
+  const questions = [
+    {
+      type: 'input',
+      name: 'title',
+      message: 'Please enter the name of the new role:',
+    },
+    {
+      type: 'input',
+      name: 'salary',
+      message: `Please enter the new role's salary:`,
+    },
+    {
+      type: 'list',
+      name: 'department_id',
+      message: `Please enter the new role's department:`,
+      choices: department,
+    },
+  ];
+  // Create variables of user input from prompts
+  const { title, salary, department_id } = await inquirer.prompt(questions);
+  
+  // Insert user input into the table
+  await query(
+    `INSERT INTO role (title, salary, department_id) VALUES(?, ?, ?)`,
+    [title, salary, department_id]
+  );
+  // Display a success message
+  console.log(`${title} has been added to the database!`);
+  // Show the table with the updates and return to the main menu
+  viewAllRoles();
+}
