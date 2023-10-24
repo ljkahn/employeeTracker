@@ -93,10 +93,9 @@ async function addEmployee() {
     }
   ];
 
-  // Prompt the user for employee information and store the responses
+
   const { first_name, last_name, role_id, manager_id } = await inquirer.prompt(questions);
 
-  // Insert the new employees information into the database
   await query(
     `INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES(?, ?, ?, ?)`,
     [first_name, last_name, role_id, manager_id]
@@ -110,7 +109,7 @@ async function addEmployee() {
 }
 
 async function updateEmployeeRole() {
-  // Query the database for employee, role, and manager information
+  // query the database for employee, role, and manager information
   const employee = await query('SELECT CONCAT(first_name, " ", last_name) AS name, id AS value FROM employee');
   const role = await query('SELECT title AS name, id AS value FROM role');
   const manager = await query('SELECT CONCAT(first_name, " ", last_name) AS name, id AS value FROM employee WHERE manager_id IS null');
@@ -118,7 +117,7 @@ async function updateEmployeeRole() {
     name: 'No Manager',
     value: null,
   });
-  // Define the questions to prompt the user for updating employee role
+  // questions to prompt the user for updating employee role
   const questions = [
     {
       type: 'list',
@@ -141,28 +140,28 @@ async function updateEmployeeRole() {
   ];
 
   const { name, role_id, manager_id } = await inquirer.prompt(questions);
-  // Update the employee data with the input from the user
+
   await query(
     'UPDATE employee SET role_id = ?, manager_id = ? WHERE id = ?',
     [role_id, manager_id, name]
   );
-  // Display a success message
+
   console.log(`Employee's role has been updated!`);
-  // Display the employees table to show updates and return to the main menu
+
   viewAllEmployees();
 }
 
 async function viewAllRoles() {
-  // Add to query to join department names instead of having the department id in the table
+  // query to join department names instead of having the department id in the table
   const result = await query(`SELECT role.id, title, department.name AS department, salary FROM role JOIN department ON department.id = role.department_id`);
-  // Display the table
+
   console.table(result);
-  // Return to main menu
+
   init();
 }
 
 async function addRole() {
-  // Add query to get department names and their id with an alias of value to work with inquirer
+  // query to get department names and their id 
   const department = await query(`SELECT id AS value, name FROM department`);
   const questions = [
     {
@@ -182,16 +181,25 @@ async function addRole() {
       choices: department,
     },
   ];
-  // Create variables of user input from prompts
+
   const { title, salary, department_id } = await inquirer.prompt(questions);
   
-  // Insert user input into the table
+ 
   await query(
     `INSERT INTO role (title, salary, department_id) VALUES(?, ?, ?)`,
     [title, salary, department_id]
   );
-  // Display a success message
+
   console.log(`${title} has been added to the database!`);
-  // Show the table with the updates and return to the main menu
+  // show the table with the updates and return to the main menu
   viewAllRoles();
+}
+
+async function viewAllDepartments() {
+
+  const result = await query(`SELECT * FROM department`);
+
+  console.table(result);
+
+  init();
 }
