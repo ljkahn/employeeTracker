@@ -203,3 +203,26 @@ async function viewAllDepartments() {
 
   init();
 }
+
+async function addDepartment() {
+  // define questions
+  const questions = [
+    {
+      type: 'input',
+      name: 'name',
+      message: 'Please enter the name of the new department:'
+    },
+  ];
+
+  const { name } = await inquirer.prompt(questions);
+
+ 
+  await query(
+    `INSERT INTO department (name) VALUES (?)`,
+    [name]
+    );
+
+  console.log(`Added ${name} to the database!`);
+
+  viewAllDepartments();
+}
