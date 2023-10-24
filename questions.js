@@ -43,6 +43,21 @@ module.exports = {
             },
 
         ]
+        return result;
     }
 
+},
+
+//create a function to display questions on CLI
+questions: (cb) => {
+    const choices = cb();
+
+    return [
+        {
+            type: ' list',
+            name: 'Choice',
+            message: 'What would you like to do?',
+        
+        }
+    ]
 }
