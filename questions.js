@@ -53,7 +53,7 @@ module.exports= {
 
     return [
         {
-            type: ' list',
+            type: 'list',
             name: 'Choice',
             message: 'What would you like to do?',
             choices: choices
