@@ -64,4 +64,43 @@ async function addEmployee() {
     name: 'No Manager',
     value: null,
   });
-}
+};
+
+const questions = [
+  {
+    type: 'input',
+    name: 'first_name',
+    message: `Enter employee first name:`,
+  },
+    {
+    type: 'input',
+    name: 'first_name',
+    message: `Enter employee first name:`,
+  },
+    {
+    type: 'input',
+    name: 'first_name',
+    message: `Enter employee first name:`,
+  },
+    {
+    type: 'input',
+    name: 'last_name',
+    message: `Enter employee last name:`,
+  },
+    {
+    type: 'list',
+    name: 'role_id',
+    message: `Enter ID number of employee's role:`,
+    choices: roles,
+  },
+
+  {
+    type: 'list',
+    name: 'manager_id',
+    message: `Enter ID number of employee's manager:`,
+    choices: manager,
+  },
+
+
+  
+]
