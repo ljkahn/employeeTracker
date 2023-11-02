@@ -18,6 +18,8 @@ View screenshots of exmaples for usage:
 [here](assets/images/addTech.png)
 [here](assets/images/addedTech.png)
 
+To see a video demonstration click [here](assets/images/employeeTracker.webm)
+
 # Features
 
 -Choose to view departments, roles, or employees to view tables containing this information.
