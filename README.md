@@ -18,7 +18,7 @@ View screenshots of exmaples for usage:
 [here](assets/images/addTech.png)
 [here](assets/images/addedTech.png)
 
-To see a video demonstration click [here](assets/images/employeeTracker.webm)
+To see a video demonstration click [here](assets/images/employeeTracker.gif)
 
 # Features
 
